@@ -2,16 +2,15 @@
 define('ROOT',str_replace('Traitement\Utilisateurs.php','',$_SERVER['SCRIPT_FILENAME']));
 require_once ROOT.'BD\Utilisateur.php';
 if(empty($_POST)&& empty($_GET)){
-    // $petitions=getAllPetitions();
+    $petitions=getPetitions();
     // $signatures=getAllSignatures();
     // $petitionWithMaxSignature=getPetitionWithMaxSignature();
-
     include(ROOT.'IHM\utilisateur\index.php');
     exit();
 }else if(isset($_GET['ajoutSignature'])){
     $idp=$_GET['idp'];
-    // $petition=getPetitionById($idp);
-    // $fiveLastSignatures=getFiveLastSignatures();
+    $petition=getPetitionById($idp);
+    $fiveLastSignatures=getFiveLastSignatures($idp);
     // XMLHttpRequest $xmlhttp = new XMLHttpRequest();
     // $xmlhttp.open("GET", "Traitement/Utilisateurs.php?ajoutSignature="+idp, true);
     // $xmlhttp.send();
@@ -19,6 +18,7 @@ if(empty($_POST)&& empty($_GET)){
         include(ROOT.'IHM\utilisateur\ajoutSignature.php');
     }
 }else if(isset($_POST['sendAjoutSignature'])){
+    $idp=$_POST['idp'];
     $titre=$_POST['titre'];
     $nom=$_POST['nom'];
     $prenom=$_POST['prenom'];
@@ -26,29 +26,30 @@ if(empty($_POST)&& empty($_GET)){
     $pays=$_POST['pays'];
     $errors="";
     try{
-        // if(existAlready($titre,$nom,$prenom,$email)){
-        if(1==1){
-            // $petitions = getAllPetitions();
+        if(existAlready($titre,$nom,$prenom,$email)){
+        // if(1==1){
+            $petitions = getPetitions();
             $errors = "Un utilisateur avec le meme email a deja signe la petition!";
             include(ROOT.'IHM\utilisateur\index.php');
         }else{
+            $signature=ajouterSignature($idp,$nom,$prenom,$pays,$email);
             // $signature=addSignature($titre,$nom,$prenom,$email,$pays);
             if($signature){
-                // $petitions = getAllPetitions();
+                $petitions = getPetitions();
                 include(ROOT.'IHM\utilisateur\index.php');
             }else{
-                // $petitions = getAllPetitions();
+                $petitions = getPetitions();
                 $errors = "Erreur d'ajout";
                 include(ROOT.'IHM\utilisateur\index.php');
             }
         }
     }catch(Exception $e){
-        // $petitions = getAllPetitions();
+        $petitions = getPetitions();
         $errors = "Erreur: " . $e->getMessage();
         include(ROOT.'IHM\utilisateur\index.php');
     }
 }else if(isset($_POST['ajoutPetition'])){
-    $idp=$_POST['idp'];
+    // $idp=$_POST['idp'];
     $titre=$_POST['titre'];
     $description=$_POST['description'];
     $datePublic=$_POST['datePublic'];
@@ -57,24 +58,24 @@ if(empty($_POST)&& empty($_GET)){
     $email=$_POST['email'];
     $errors = "";
     try{
-        // if(existAlreadyPetition($titre)){
-        if(1==1){
-            // $petitions = getAllPetitions();
+        if(existAlreadyPetition($titre)){
+        // if(1==1){
+            $petitions = getPetitions();
             $errors = "Une petition avec le meme titre existe deja!";
             include(ROOT.'IHM\utilisateur\index.php');
         }else{
-            // $petition=addPetition($idp,$titre,$description,$datePublic,$dateFinP,$porteurP,$email);
+            $petition=ajouterPetition($titre,$description,$datePublic,$dateFinP,$porteurP,$email);
             if($petition){
-                // $petitions = getAllPetitions();
+                $petitions = getPetitions();
                 include(ROOT.'IHM\utilisateur\index.php');
             }else{
-                // $petitions = getAllPetitions();
+                $petitions = getPetitions();
                 $errors = "Erreur d'ajout";
                 include(ROOT.'IHM\utilisateur\index.php');
             }
         }
     }catch(Exception $e){
-        // $petitions = getAllPetitions();
+        $petitions = getPetitions();
         $errors = "Erreur: " . $e->getMessage();
         include(ROOT.'IHM\utilisateur\index.php');
     }

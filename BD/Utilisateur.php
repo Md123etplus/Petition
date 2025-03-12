@@ -16,7 +16,24 @@ function ajouterPetition($titre, $description, $dateFinP, $porteurP, $email) {
     ]);
 }
 
-
+function existAlready($titre, $nom, $prenom, $email) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM signature WHERE Nom = :nom AND Prenom = :prenom AND Email = :email";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':email' => $email
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+function existAlreadyPetition($titre) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM petition WHERE Titre = :titre";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([':titre' => $titre]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 function getPetitions() {
     $bdd = connexion();
@@ -24,7 +41,13 @@ function getPetitions() {
     return $bdd->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
+function getPetitionById($idp) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM petition WHERE IDP = :idp";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([':idp' => $idp]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 function ajouterSignature($idp, $nom, $prenom, $pays, $email) {
     $bdd = connexion();
     $sql = "INSERT INTO signature (IDP, Nom, Prenom, Pays, Date, Heure, Email) 
@@ -46,5 +69,11 @@ function getSignatures($idp) {
     $stmt->execute([':idp' => $idp]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+function getFiveLastSignatures($idp) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM signature WHERE IDP = :idp ORDER BY ID DESC LIMIT 5";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([':idp' => $idp]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
