@@ -69,6 +69,13 @@ function getSignatures($idp) {
     $stmt->execute([':idp' => $idp]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getSignatureById($ids) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM signature WHERE IDS = :ids";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([':ids' => $ids]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 function getFiveLastSignatures($idp) {
     $bdd = connexion();
     $sql = "SELECT * FROM signature WHERE IDP = :idp ORDER BY ID DESC LIMIT 5";
