@@ -1,0 +1,50 @@
+<?php
+require_once 'Connexion.php';
+
+
+function ajouterPetition($titre, $description, $dateFinP, $porteurP, $email) {
+    $bdd = connexion(); 
+    $sql = "INSERT INTO petition (Titre, Description, DatePublic, DateFinP, PorteurP, Email) 
+            VALUES (:titre, :description, NOW(), :dateFinP, :porteurP, :email)";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([
+        ':titre' => $titre,
+        ':description' => $description,
+        ':dateFinP' => $dateFinP,
+        ':porteurP' => $porteurP,
+        ':email' => $email
+    ]);
+}
+
+
+
+function getPetitions() {
+    $bdd = connexion();
+    $sql = "SELECT * FROM petition";
+    return $bdd->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function ajouterSignature($idp, $nom, $prenom, $pays, $email) {
+    $bdd = connexion();
+    $sql = "INSERT INTO signature (IDP, Nom, Prenom, Pays, Date, Heure, Email) 
+            VALUES (:idp, :nom, :prenom, :pays, NOW(), NOW(), :email)";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([
+        ':idp' => $idp,
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':pays' => $pays,
+        ':email' => $email
+    ]);
+}
+
+function getSignatures($idp) {
+    $bdd = connexion();
+    $sql = "SELECT * FROM signature WHERE IDP = :idp";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([':idp' => $idp]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+?>
