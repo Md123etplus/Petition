@@ -16,7 +16,11 @@ else if(isset($_GET['listPetition'])){
 
     loadPetitions();
 
-} else if (isset($_GET['ajoutSignature'])) {
+}else if(isset($_GET['mostSignedPetition'])){
+    $petition = getMostSignedPetition();
+    include(ROOT . 'IHM\utilisateur\mostSignedPetition.php');
+
+}else if (isset($_GET['ajoutSignature'])) {
     $idp = $_GET['idp'];
     $petition = getPetitionById($idp);
     $fiveLastSignatures = getFiveLastSignatures($idp);
