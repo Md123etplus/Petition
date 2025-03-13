@@ -4,12 +4,18 @@ require_once ROOT . 'BD\Utilisateur.php';
 
 function loadPetitions($errors = "") {
     $petitions = getPetitions();
-    include(ROOT . 'IHM\utilisateur\index.php');
-    exit();
+    include(ROOT . 'IHM\utilisateur\listePetition.php');
+    // exit();
 }
 
 if (empty($_POST) && empty($_GET)) {
+    include(ROOT . 'IHM\utilisateur\index.php');
+    exit();
+}
+else if(isset($_GET['listPetition'])){
+
     loadPetitions();
+
 } else if (isset($_GET['ajoutSignature'])) {
     $idp = $_GET['idp'];
     $petition = getPetitionById($idp);

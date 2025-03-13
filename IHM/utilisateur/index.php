@@ -18,8 +18,8 @@
                 Signez pour faire la différence !
             </p>
             <div class="btnContainer">
-                <a href="#ajoutP">Nouvelle Pétition</a>
-                <a href="listePetition.php">Liste Pétition</a>
+                <a href="/IHM/utilisateur/index.php#ajoutP">Nouvelle Pétition</a>
+                <a href="/Traitement/Utilisateurs.php?listPetition=listPetition">Liste Pétition</a>
             </div>
         </div>
     </section>

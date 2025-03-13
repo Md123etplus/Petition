@@ -116,7 +116,7 @@ function deleteSignature($ids) {
 }
 function getFiveLastSignatures($idp) {
     $bdd = connexion();
-    $sql = "SELECT * FROM signature WHERE IDP = :idp ORDER BY ID DESC LIMIT 5";
+    $sql = "SELECT * FROM signature WHERE IDP = :idp ORDER BY IDP DESC LIMIT 5";
     $stmt = $bdd->prepare($sql);
     $stmt->execute([':idp' => $idp]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

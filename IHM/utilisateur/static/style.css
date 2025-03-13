@@ -22,6 +22,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    color: white;
 }
 
 .main_container{
@@ -108,7 +109,7 @@ header .navbar{
     /* color: rgb(233, 226, 226); */
 }
 
-.ajoutPetition p{
+.ajoutPetition p, .petition_p{
     padding-top: 70px;
     padding-bottom: 50px;
     text-align: center;
@@ -116,7 +117,7 @@ header .navbar{
     width: 70%;
 }
 
-.ajoutPetition p span{
+.ajoutPetition p span, .petition_p span{
     font-size: 3.7rem;
     font-family: cursive;
     color: rgb(233, 226, 226);
@@ -129,6 +130,7 @@ header .navbar{
     justify-content: space-between;
     border: 2px solid #D46F4D;
     border-radius: 20px;
+    margin-bottom: 25px;
 }
 
 .formContainer form{
@@ -174,9 +176,113 @@ header .navbar{
     border-radius: 15px;
     width: 98%;
     margin-top: 30px;
-}
-
-.formContainer button{
     border: 1.2px solid #4A919E;
     color: #4A919E;
+}
+
+.petitionContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.petitionContainer input[readonly], .petitionContainer textarea[readonly]{
+    background-color: inherit;
+    color: rgb(233, 226, 226);
+    font-size: 1.1rem;
+}
+
+.petitionContainer input[name="titre"]{
+    color: #D46F4D;
+    font-size: 1.7rem;
+}
+
+.petitionContainer textarea{
+    font-weight: lighter;
+    padding: 10px;
+}
+
+.petition{
+    width: 60%;
+    height: max-content;
+    padding: 15px 5px;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #cc8d5a2a;
+    color: rgb(233, 226, 226);
+    border: 2px solid rgb(233, 226, 226);
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.petition .action{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-right: 25px;
+}
+
+.petition .action button{
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.petition .action button img{
+    width: 20px;
+    height: 20px;
+}
+
+.petitionHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 25px; margin-right: 25px;
+}
+
+.petition textarea{
+    width: 93%;
+    min-height: 150px;
+    margin: auto;
+}
+
+.petition .info{
+    width: 95%;
+    align-self: last baseline;
+}
+
+.petition>a{
+    font-size: 1.4rem;
+    padding: 8px 16px;
+    border-radius: 15px;
+    margin-top: 30px; margin-right: 25px;
+    border: 1.2px solid #4A919E;
+    color: #4A919E;
+    width: 10%;
+    text-align: center;
+    align-self: flex-end;
+}
+
+.fiveSign{
+    width: 75%;
+    min-height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.signContainer{
+    max-width: 15%;
+    padding: 9px 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid #D46F4D;
+    border-radius: 20px;
 }
