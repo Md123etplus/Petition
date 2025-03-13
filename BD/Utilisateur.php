@@ -15,6 +15,19 @@ function ajouterPetition($titre, $description, $dateFinP, $porteurP, $email) {
         ':email' => $email
     ]);
 }
+function editPetition($idp, $titre, $description, $dateFinP, $porteurP, $email) {
+    $bdd = connexion();
+    $sql = "UPDATE petition SET Titre = :titre, Description = :description, DateFinP = :dateFinP, PorteurP = :porteurP, Email = :email WHERE IDP = :idp";
+    $stmt = $bdd->prepare($sql);
+    return $stmt->execute([
+        ':idp' => $idp,
+        ':titre' => $titre,
+        ':description' => $description,
+        ':dateFinP' => $dateFinP,
+        ':porteurP' => $porteurP,
+        ':email' => $email
+    ]);
+}
 
 function existAlready($titre, $nom, $prenom, $email) {
     $bdd = connexion();
@@ -48,6 +61,13 @@ function getPetitionById($idp) {
     $stmt->execute([':idp' => $idp]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+function deletePetition($idp) {
+    $bdd = connexion();
+    $sql = "DELETE FROM petition WHERE IDP = :idp";
+    $stmt = $bdd->prepare($sql);
+    return $stmt->execute([':idp' => $idp]);
+}
+
 function ajouterSignature($idp, $nom, $prenom, $pays, $email) {
     $bdd = connexion();
     $sql = "INSERT INTO signature (IDP, Nom, Prenom, Pays, Date, Heure, Email) 
@@ -55,6 +75,18 @@ function ajouterSignature($idp, $nom, $prenom, $pays, $email) {
     $stmt = $bdd->prepare($sql);
     $stmt->execute([
         ':idp' => $idp,
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':pays' => $pays,
+        ':email' => $email
+    ]);
+}
+function editSignature($ids, $nom, $prenom, $pays, $email) {
+    $bdd = connexion();
+    $sql = "UPDATE signature SET Nom = :nom, Prenom = :prenom, Pays = :pays, Email = :email WHERE IDS = :ids";
+    $stmt = $bdd->prepare($sql);
+    return $stmt->execute([
+        ':ids' => $ids,
         ':nom' => $nom,
         ':prenom' => $prenom,
         ':pays' => $pays,
@@ -76,6 +108,12 @@ function getSignatureById($ids) {
     $stmt->execute([':ids' => $ids]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+function deleteSignature($ids) {
+    $bdd = connexion();
+    $sql = "DELETE FROM signature WHERE IDS = :ids";
+    $stmt = $bdd->prepare($sql);
+    return $stmt->execute([':ids' => $ids]);
+}
 function getFiveLastSignatures($idp) {
     $bdd = connexion();
     $sql = "SELECT * FROM signature WHERE IDP = :idp ORDER BY ID DESC LIMIT 5";
@@ -83,4 +121,5 @@ function getFiveLastSignatures($idp) {
     $stmt->execute([':idp' => $idp]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 ?>
