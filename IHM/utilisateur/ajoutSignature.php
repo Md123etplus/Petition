@@ -39,30 +39,13 @@
                 </form>
         
                 <img src="/IHM/utilisateur/static/image/petition_form.jpg" alt="image pétition">
+            </div>                
+
+            <p>Signée par :</p>
+            <div class="fiveSign">
+                <!-- Les signatures seront ajoutées ici par AJAX -->
             </div>
 
-            <?php
-                if(isset($fiveLastSignatures) && !empty($fiveLastSignatures)){
-                    echo "<p>Signée par:</p>";
-            ?>
-            <div class="fiveSign">  
-
-            <?php
-                    foreach($fiveLastSignatures as $signature){
-                        // print_r($signature)
-            ?>
-                <div class="signContainer">
-                    <span><?php echo $signature['Nom'].' '.$signature['Prenom'] ?></span>
-                    <span><?php echo $signature['Pays'] ?></span>
-                </div>
-
-            <?php
-                    }
-                }
-                else
-                    echo "Pétition n'a aucune signature"
-            ?>
-                
             </div>
         </div>
     </section>

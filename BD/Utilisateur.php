@@ -123,7 +123,7 @@ function getFiveLastSignatures($idp) {
 }
 function getMostSignedPetition(){
     $bdd = connexion();
-    $sql = "SELECT IDP, Titre, COUNT(IDS) as nbSignatures FROM petition JOIN signature ON petition.IDP = signature.IDP GROUP BY petition.IDP ORDER BY nbSignatures DESC LIMIT 1";
+    $sql = "SELECT petition.IDP, petition.Titre, COUNT(IDS) as nbSignatures FROM petition JOIN signature ON petition.IDP = signature.IDP GROUP BY petition.IDP ORDER BY nbSignatures DESC LIMIT 1";
     $stmt = $bdd->query($sql);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }

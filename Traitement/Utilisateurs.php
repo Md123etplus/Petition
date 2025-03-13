@@ -4,6 +4,7 @@ require_once ROOT . 'BD\Utilisateur.php';
 
 function loadPetitions($errors = "") {
     $petitions = getPetitions();
+    // $mostSignedPetition = getMostSignedPetition();
     include(ROOT . 'IHM\utilisateur\listePetition.php');
     // exit();
 }
@@ -17,13 +18,21 @@ else if(isset($_GET['listPetition'])){
     loadPetitions();
 
 }else if(isset($_GET['mostSignedPetition'])){
-    $petition = getMostSignedPetition();
-    include(ROOT . 'IHM\utilisateur\mostSignedPetition.php');
+    $mostSignedPetition = getMostSignedPetition();
 
-}else if (isset($_GET['ajoutSignature'])) {
+    header('Content-Type: application/json');
+    echo json_encode($mostSignedPetition);  
+
+}else if(isset($_GET['fiveLastSignatures'])){
+    $idp = $_GET['idp'];
+    $fiveLastSignatures = getFiveLastSignatures($idp);
+    header('Content-Type: application/json');
+    echo json_encode($fiveLastSignatures);  
+}
+else if (isset($_GET['ajoutSignature'])) {
     $idp = $_GET['idp'];
     $petition = getPetitionById($idp);
-    $fiveLastSignatures = getFiveLastSignatures($idp);
+    
     if ($petition) {
         include(ROOT . 'IHM\utilisateur\ajoutSignature.php');
     }

@@ -16,6 +16,11 @@
             <span>Chaque signature compte.</span> <br> <br>
             Soutenez les causes qui vous tiennent à coeur !
             </p>
+
+            <p class="petition_p mostSignedPetition">
+                <!-- La pétition la plus soutenue sera chargée ici par AJAX -->
+            </p>
+
     
             <?php
                 if(isset($petitions) && !empty($petitions)){
@@ -26,21 +31,16 @@
             <div class="petitionContainer">
                 <form class="petition" action="/Traitement/Utilisateurs.php" method="post">
                     <input type="number" name="idp" hidden value="<?php echo $petition['IDP'] ?>">
-                <!-- <div > -->
                     <div class="action">
                         <button type="submit" name="sendEditPetition" class="check-btn" style="display: none;">
-                            <!-- <a href="/Traitement/Utilisateurs.php?editPetition=editPetition&idp=<?php //echo $petition['IDP'] ?>"> -->
-                                <img src="/IHM/utilisateur/static/image/check.png" alt="edit">
-                            <!-- </a> -->
+                            <img src="/IHM/utilisateur/static/image/check.png" alt="edit">
                         </button>
                         <a class="edit-btn">
                             <img src="/IHM/utilisateur/static/image/edit.svg" alt="edit">
                         </a>
-                        <!-- <button> -->
-                            <a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>">
-                                <img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit">
-                            </a>
-                        <!-- </button> -->
+                        <a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>">
+                            <img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit">
+                        </a>
                     </div>
 
 
