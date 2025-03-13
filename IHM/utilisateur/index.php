@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Petition/IHM/utilisateur/static/style.css">
+    <link rel="stylesheet" href="/IHM/utilisateur/static/style.css">
     <title>Acceuil</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
                 Signez pour faire la différence !
             </p>
             <div class="btnContainer">
-                <a href="ajouterPetition.php">Nouvelle Pétition</a>
+                <a href="#ajoutP">Nouvelle Pétition</a>
                 <a href="listePetition.php">Liste Pétition</a>
             </div>
         </div>

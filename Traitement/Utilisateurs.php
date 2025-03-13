@@ -45,7 +45,7 @@ if (empty($_POST) && empty($_GET)) {
 } else if (isset($_POST['ajoutPetition'])) {
     $titre = $_POST['titre'];
     $description = $_POST['description'];
-    $datePublic = $_POST['datePublic'];
+    // $datePublic = $_POST['datePublic'];
     $dateFinP = $_POST['dateFinP'];
     $porteurP = $_POST['porteurP'];
     $email = $_POST['email'];
@@ -55,8 +55,9 @@ if (empty($_POST) && empty($_GET)) {
             $errors = "Une petition avec le meme titre existe deja!";
             loadPetitions($errors);
         } else {
-            $petition = ajouterPetition($titre, $description, $datePublic, $dateFinP, $porteurP, $email);
+            $petition = ajouterPetition($titre, $description, $dateFinP, $porteurP, $email);
             if ($petition) {
+                echo $petition;
                 loadPetitions();
             } else {
                 $errors = "Erreur d'ajout";
