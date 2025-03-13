@@ -29,6 +29,8 @@
     <!-- form for adding new petition -->
      <?php include('ajouterPetition.php'); ?>
 
+     <?php include('include/footer.php') ?>
 
+    <script src="/IHM/utilisateur/static/script.js"></script>
 </body>
 </html>

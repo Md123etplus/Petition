@@ -14,7 +14,8 @@
                 <input type="text" name="porteurP" id="porteurP" placeholder="Votre nom" required>
     
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email" placeholder="Votre email" required>
+                <input type="email" name="email" id="email" placeholder="Votre email" required oninput="validateEmail()">
+                <small id="emailError" style="color: red; display: none;">Veuillez entrer une adresse email valide.</small>
     
                 <label for="dateFinP">Date de fin de Publication:</label>
                 <input type="date" name="dateFinP" id="dateFinP" required>

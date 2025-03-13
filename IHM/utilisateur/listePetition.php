@@ -24,11 +24,25 @@
             ?>
 
             <div class="petitionContainer">
-                <div class="petition">
+                <form class="petition" action="/Traitement/Utilisateurs.php" method="post">
+                    <input type="number" name="idp" hidden value="<?php echo $petition['IDP'] ?>">
+                <!-- <div > -->
                     <div class="action">
-                        <button><img src="/IHM/utilisateur/static/image/edit.svg" alt="edit"></button>
-                        <button><a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>"><img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit"></a></button>
+                        <button type="submit" name="sendEditPetition" class="check-btn" style="display: none;">
+                            <!-- <a href="/Traitement/Utilisateurs.php?editPetition=editPetition&idp=<?php //echo $petition['IDP'] ?>"> -->
+                                <img src="/IHM/utilisateur/static/image/check.png" alt="edit">
+                            <!-- </a> -->
+                        </button>
+                        <a class="edit-btn">
+                            <img src="/IHM/utilisateur/static/image/edit.svg" alt="edit">
+                        </a>
+                        <!-- <button> -->
+                            <a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>">
+                                <img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit">
+                            </a>
+                        <!-- </button> -->
                     </div>
+
 
                     <div class="petitionHeader">
                         <input type="text" name="titre" value="<?php echo $petition['Titre'] ?>" readonly>
@@ -43,13 +57,16 @@
                     <span class="info">
                         <label for="porteurP">Par </label>
                         <input type="text" name="porteurP" id="porteurP" value="<?php echo $petition["PorteurP"] ?>" readonly>
-                        <input type="text" name="email" value="<?php echo "(".$petition["Email"].")" ?>" readonly>
+                        <label>:</label>
+                        <input type="text" name="email" value="<?php echo $petition["Email"] ?>" readonly>
                         <label for="datePublic">, le </label>
                         <input type="date" name="datePublic" id="datePublic" value="<?php echo $petition["DatePublic"] ?>" readonly>
                     </span>
 
                     <a href="/Traitement/Utilisateurs.php?ajoutSignature=ajoutSignature&idp=<?php echo $petition['IDP'] ?>" >Signer</a>
-                </div>
+                <!-- </div> -->
+
+                </form>
             </div>
 
             <?php
@@ -60,6 +77,9 @@
             ?>
         </div>
     </section>
+
+    <?php include('include/footer.php') ?>
     
+    <script src="/IHM/utilisateur/static/script.js"></script>
 </body>
 </html>

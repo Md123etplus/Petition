@@ -227,12 +227,13 @@ header .navbar{
     margin-right: 25px;
 }
 
-.petition .action button{
-    padding: 3px 6px;
+.petition .action a, .petition .action button{
+    padding: 3px 7px;
     border-radius: 4px;
+    background-color: #f3c9a6;
 }
 
-.petition .action button img{
+.petition .action a img, .petition .action button img{
     width: 20px;
     height: 20px;
 }
@@ -274,7 +275,7 @@ header .navbar{
     flex-direction: row;
     justify-content: center;
     gap: 25px;
-    margin-top: 25px;
+    margin-top: 25px; margin-bottom: 25px;
 }
 
 .signContainer{
@@ -285,4 +286,44 @@ header .navbar{
     text-align: center;
     border: 2px solid #D46F4D;
     border-radius: 20px;
+}
+
+
+
+
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.social-icons {
+    margin: 15px 0;
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+    color: #1da1f2; /* Bleu clair, à adapter selon le réseau social */
+}
+
+p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #bbb;
 }

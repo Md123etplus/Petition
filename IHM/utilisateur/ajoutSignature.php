@@ -29,7 +29,8 @@
                     <input type="text" name="prenom" id="prenom" placeholder="Votre prenom" required>
         
                     <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" placeholder="Votre email" required>
+                    <input type="email" name="email" id="email" placeholder="Votre email" required oninput="validateEmail()">
+                    <small id="emailError" style="color: red; display: none;">Veuillez entrer une adresse email valide.</small>
         
                     <label for="pays">Pays:</label>
                     <input type="text" name="pays" id="pays" placeholder="Votre pays" required>
@@ -65,5 +66,9 @@
             </div>
         </div>
     </section>
+
+    <?php include('include/footer.php') ?>
+
+    <script src="/IHM/utilisateur/static/script.js"></script>
 </body>
 </html>
