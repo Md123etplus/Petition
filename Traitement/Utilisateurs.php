@@ -17,6 +17,14 @@ else if(isset($_GET['listPetition'])){
 
     loadPetitions();
 
+}else if(isset($_GET['updateListPetition'])){
+
+    $petitions = getPetitions();
+
+    header('Content-Type: application/json');
+    echo json_encode($petitions); 
+
+
 }else if(isset($_GET['mostSignedPetition'])){
     $mostSignedPetition = getMostSignedPetition();
 
@@ -141,7 +149,9 @@ else if (isset($_GET['ajoutSignature'])) {
     $ids = $_GET['ids'];
     $signature = getSignatureById($ids);
     if ($signature) {
-        include(ROOT . 'IHM\utilisateur\editSignature.php');
+        // include(ROOT . 'IHM\utilisateur\editSignature.php');
+        header('Content-Type: application/json');
+        echo json_encode($signature);
     }
 } else if (isset($_POST['sendEditSignature'])) {
     $ids = $_POST['ids'];
@@ -152,7 +162,7 @@ else if (isset($_GET['ajoutSignature'])) {
     $email = $_POST['email'];
     $errors = "";
     try {
-        $signature = editSignature($ids, $nom, $nom, $prenom, $pays, $email);
+        $signature = editSignature($ids, $nom, $prenom, $pays, $email);
         if ($signature) {
             loadPetitions();
         } else {

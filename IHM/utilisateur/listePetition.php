@@ -21,60 +21,63 @@
                 <!-- La pétition la plus soutenue sera chargée ici par AJAX -->
             </p>
 
-    
-            <?php
-                if(isset($petitions) && !empty($petitions)){
+            <div class="petitionsMainContainer" style="width: 100%;">
 
-                foreach($petitions as $petition){   
-            ?>
+                <?php
+                    if(isset($petitions) && !empty($petitions)){
 
-            <div class="petitionContainer">
-                <form class="petition" action="/Traitement/Utilisateurs.php" method="post">
-                    <input type="number" name="idp" hidden value="<?php echo $petition['IDP'] ?>">
-                    <div class="action">
-                        <button type="submit" name="sendEditPetition" class="check-btn" style="display: none;">
-                            <img src="/IHM/utilisateur/static/image/check.png" alt="edit">
-                        </button>
-                        <a class="edit-btn">
-                            <img src="/IHM/utilisateur/static/image/edit.svg" alt="edit">
-                        </a>
-                        <a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>">
-                            <img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit">
-                        </a>
-                    </div>
+                    foreach($petitions as $petition){   
+                ?>
+
+                <div class="petitionContainer">
+                    <form class="petition" action="/Traitement/Utilisateurs.php" method="post">
+                        <input type="number" name="idp" hidden value="<?php echo $petition['IDP'] ?>">
+                        <div class="action">
+                            <button type="submit" name="sendEditPetition" class="check-btn" style="display: none;">
+                                <img src="/IHM/utilisateur/static/image/check.png" alt="edit">
+                            </button>
+                            <a class="edit-btn">
+                                <img src="/IHM/utilisateur/static/image/edit.svg" alt="edit">
+                            </a>
+                            <a href="/Traitement/Utilisateurs.php?deletePetition=deletePetition&idp=<?php echo $petition['IDP'] ?>">
+                                <img src="/IHM/utilisateur/static/image/delete-button.svg" alt="edit">
+                            </a>
+                        </div>
 
 
-                    <div class="petitionHeader">
-                        <input type="text" name="titre" value="<?php echo $petition['Titre'] ?>" readonly>
-                        <span>
-                            <label for="dateFinP">Date limite: </label>
-                            <input type="date" name="dateFinP" id="dateFinP" value="<?php echo $petition["DateFinP"] ?>" readonly>
+                        <div class="petitionHeader">
+                            <input type="text" name="titre" value="<?php echo $petition['Titre'] ?>" readonly>
+                            <span>
+                                <label for="dateFinP">Date limite: </label>
+                                <input type="date" name="dateFinP" id="dateFinP" value="<?php echo $petition["DateFinP"] ?>" readonly>
+                            </span>
+                        </div>
+
+                        <textarea name="description" id="description" readonly><?php echo $petition["Description"] ?></textarea>
+
+                        <span class="info">
+                            <label for="porteurP">Par </label>
+                            <input type="text" name="porteurP" id="porteurP" value="<?php echo $petition["PorteurP"] ?>" readonly>
+                            <label>:</label>
+                            <input type="text" name="email" value="<?php echo $petition["Email"] ?>" readonly>
+                            <label for="datePublic">, le </label>
+                            <input type="date" name="datePublic" id="datePublic" value="<?php echo $petition["DatePublic"] ?>" readonly>
                         </span>
-                    </div>
 
-                    <textarea name="description" id="description" readonly><?php echo $petition["Description"] ?></textarea>
+                        <a href="/Traitement/Utilisateurs.php?ajoutSignature=ajoutSignature&idp=<?php echo $petition['IDP'] ?>" >Signer</a>
+                    <!-- </div> -->
 
-                    <span class="info">
-                        <label for="porteurP">Par </label>
-                        <input type="text" name="porteurP" id="porteurP" value="<?php echo $petition["PorteurP"] ?>" readonly>
-                        <label>:</label>
-                        <input type="text" name="email" value="<?php echo $petition["Email"] ?>" readonly>
-                        <label for="datePublic">, le </label>
-                        <input type="date" name="datePublic" id="datePublic" value="<?php echo $petition["DatePublic"] ?>" readonly>
-                    </span>
+                    </form>
+                </div>
 
-                    <a href="/Traitement/Utilisateurs.php?ajoutSignature=ajoutSignature&idp=<?php echo $petition['IDP'] ?>" >Signer</a>
-                <!-- </div> -->
-
-                </form>
+                <?php
+                        }
+                    }else
+                        echo "aucune pétition...";
+                    
+                ?>
             </div>
-
-            <?php
-                    }
-                }else
-                    echo "aucune pétition...";
-                
-            ?>
+    
         </div>
     </section>
 
